@@ -1,0 +1,23 @@
+---
+title: "make_filename"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{make_filename}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The `make_filename` function creates an "accident_year.csv.bz2" file name given the year entered by the user. 
+
+```{r setup}
+library(fars)
+fname <- make_filename(2015)
+fname
+```
