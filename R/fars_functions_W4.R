@@ -12,8 +12,9 @@
 #' @importFrom dplyr tbl_df
 #'
 #' @examples
-#' d <- fars_read("accident_2015.csv.bz2")
-#'
+#' \dontrun{
+#'   d <- fars_read("accident_2015.csv.bz2")
+#' }
 #' @export
 fars_read <- function(filename) {
         if(!file.exists(filename))
@@ -31,8 +32,6 @@ fars_read <- function(filename) {
 #' @param year The year to be attached to the file name.
 #'
 #' @return This function returns a file name with the input year.
-#'
-#' @note
 #'
 #' @examples
 #' fname <- make_filename(2015)
@@ -56,10 +55,12 @@ make_filename <- function(year) {
 #' @note An error will occur if the file does not exist in the working directory.
 #'
 #' @importFrom dplyr mutate select
+#' @importFrom magrittr `%>%`
 #'
 #' @examples
-#' d <- fars_read_years(c(2013,2014,2015))
-#'
+#' \dontrun{
+#'   d <- fars_read_years(c(2013,2014,2015))
+#' }
 #' @export
 fars_read_years <- function(years) {
         lapply(years, function(year) {
@@ -88,10 +89,12 @@ fars_read_years <- function(years) {
 #'
 #' @importFrom dplyr bind_rows group_by
 #' @importFrom tidyr spread
+#' @importFrom magrittr `%>%`
 #'
 #' @examples
-#' d <- fars_summarize_years(c(2013,2014,2015))
-#'
+#' \dontrun{
+#'   d <- fars_summarize_years(c(2013,2014,2015))
+#' }
 #' @export
 fars_summarize_years <- function(years) {
         dat_list <- fars_read_years(years)
@@ -118,7 +121,9 @@ fars_summarize_years <- function(years) {
 #' @importFrom graphics points
 #'
 #' @examples
-#' fars_map_state(1,2015)
+#' \dontrun{
+#'   fars_map_state(1,2015)
+#' }
 #'
 #' @export
 fars_map_state <- function(state.num, year) {

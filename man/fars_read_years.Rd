@@ -21,6 +21,7 @@ on the input years.
 An error will occur if the file does not exist in the working directory.
 }
 \examples{
-d <- fars_read_years(c(2013,2014,2015))
-
+\dontrun{
+  d <- fars_read_years(c(2013,2014,2015))
+}
 }

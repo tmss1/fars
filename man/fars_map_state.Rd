@@ -22,6 +22,8 @@ summaries the number of accidents by month and year.
 An error will occur if the data does not contain the state requested.
 }
 \examples{
-fars_map_state(1,2015)
+\dontrun{
+  fars_map_state(1,2015)
+}
 
 }

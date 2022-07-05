@@ -20,6 +20,7 @@ summaries the number of accidents by month and year.
 An error will occur if the file does not exist in the working directory.
 }
 \examples{
-d <- fars_summarize_years(c(2013,2014,2015))
-
+\dontrun{
+  d <- fars_summarize_years(c(2013,2014,2015))
+}
 }

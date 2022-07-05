@@ -19,6 +19,7 @@ This is a function to import data in CSV format given a file name.
 An error will occur if the file does not exist in the working directory.
 }
 \examples{
-d <- fars_read("accident_2015.csv.bz2")
-
+\dontrun{
+  d <- fars_read("accident_2015.csv.bz2")
+}
 }
