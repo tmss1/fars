@@ -1,5 +1,5 @@
 ---
-title: "make_filename"
+title: "fars_vignette"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{make_filename}
@@ -14,10 +14,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-The `make_filename` function creates an "accident_year.csv.bz2" file name given the year entered by the user. 
+The `fars_summarize_years` accepts a vector of years of the data requested and summaries the number of accidents by month and year.
 
 ```{r setup}
 library(fars)
-fname <- make_filename(2015)
-fname
+d <- fars_summarize_years(c(2013,2014,2015)) 
 ```
