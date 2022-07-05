@@ -4,6 +4,9 @@
 # fars
 
 <!-- badges: start -->
+
+[![Build
+Status](https://app.travis-ci.com/tmss1/fars.svg?branch=main)](https://app.travis-ci.com/tmss1/fars)
 <!-- badges: end -->
 
 The goal of fars is to …
