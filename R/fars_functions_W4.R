@@ -1,16 +1,16 @@
-#' Import datas 
+#' Import data
 #'
-#' This is a function to import data in CSV format given a file name. 
+#' This is a function to import data in CSV format given a file name.
 #'
-#' @param filename A character string of the file name to be imported 
+#' @param filename A character string of the file name to be imported
 #'
-#' @return A tibble of the data requested 
+#' @return A tibble of the data requested
 #'
-#' @note An error will occur if the file does not exist in the working directory.  
-#' 
-#' @importFrom readr read_csv 
-#' @importFrom dplyr tbl_df 
-#' 
+#' @note An error will occur if the file does not exist in the working directory.
+#'
+#' @importFrom readr read_csv
+#' @importFrom dplyr tbl_df
+#'
 #' @examples
 #' d <- fars_read("accident_2015.csv.bz2")
 #'
@@ -22,17 +22,17 @@ fars_read <- function(filename) {
                 readr::read_csv(filename, progress = FALSE)
         })
         dplyr::tbl_df(data)
-} 
+}
 
-#' Make file name 
+#' Make file name
 #'
-#' This function creates an "accident_year.csv.bz2" file name given the year entered by the user. 
+#' This function creates an "accident_year.csv.bz2" file name given the year entered by the user.
 #'
-#' @param year The year to be attached to the file name. 
+#' @param year The year to be attached to the file name.
 #'
-#' @return This function returns a file name with the input year. 
+#' @return This function returns a file name with the input year.
 #'
-#' @note  
+#' @note
 #'
 #' @examples
 #' fname <- make_filename(2015)
@@ -43,21 +43,21 @@ make_filename <- function(year) {
         sprintf("accident_%d.csv.bz2", year)
 }
 
-#' Import data of the years requested 
+#' Import data of the years requested
 #'
-#' This function accepts a vector of years of the data requested and 
-#' creates a list of tibbles with the month and year columns based 
-#' on the input years. 
+#' This function accepts a vector of years of the data requested and
+#' creates a list of tibbles with the month and year columns based
+#' on the input years.
 #'
-#' @param years A vector of years of the data requested  
+#' @param years A vector of years of the data requested
 #'
-#' @return A list of tibbles with the month and year columns requested 
+#' @return A list of tibbles with the month and year columns requested
 #'
-#' @note An error will occur if the file does not exist in the working directory.  
-#' 
-#' @importFrom dplyr mutate select 
+#' @note An error will occur if the file does not exist in the working directory.
 #'
-#' @examples 
+#' @importFrom dplyr mutate select
+#'
+#' @examples
 #' d <- fars_read_years(c(2013,2014,2015))
 #'
 #' @export
@@ -66,7 +66,7 @@ fars_read_years <- function(years) {
                 file <- make_filename(year)
                 tryCatch({
                         dat <- fars_read(file)
-                        dplyr::mutate(dat, year = year) %>% 
+                        dplyr::mutate(dat, year = year) %>%
                                 dplyr::select(MONTH, year)
                 }, error = function(e) {
                         warning("invalid year: ", year)
@@ -75,52 +75,52 @@ fars_read_years <- function(years) {
         })
 }
 
-#' Summarising data of the years requested 
+#' Summarising data of the years requested
 #'
-#' This function accepts a vector of years of the data requested and 
-#' summaries the number of accidents by month and year. 
+#' This function accepts a vector of years of the data requested and
+#' summaries the number of accidents by month and year.
 #'
-#' @param years A vector of years of the data requested 
+#' @param years A vector of years of the data requested
 #'
-#' @return A tibble summarising the number of accidents by month and year  
+#' @return A tibble summarising the number of accidents by month and year
 #'
-#' @note An error will occur if the file does not exist in the working directory.  
-#' 
-#' @importFrom dplyr bind_rows group_by  
-#' @importFrom tidyr spread 
+#' @note An error will occur if the file does not exist in the working directory.
 #'
-#' @examples 
+#' @importFrom dplyr bind_rows group_by
+#' @importFrom tidyr spread
+#'
+#' @examples
 #' d <- fars_summarize_years(c(2013,2014,2015))
 #'
-#' @export 
+#' @export
 fars_summarize_years <- function(years) {
         dat_list <- fars_read_years(years)
-        dplyr::bind_rows(dat_list) %>% 
-                dplyr::group_by(year, MONTH) %>% 
+        dplyr::bind_rows(dat_list) %>%
+                dplyr::group_by(year, MONTH) %>%
                 dplyr::summarize(n = n()) %>%
                 tidyr::spread(year, n)
 }
 
-#' Import data of the years requested 
+#' Import data of the years requested
 #'
-#' This function accepts a vector of years of the data requested and 
-#' summaries the number of accidents by month and year. 
+#' This function accepts a vector of years of the data requested and
+#' summaries the number of accidents by month and year.
 #'
-#' @param state.num An integer indicating the state to plot  
-#' @param year The year to plot 
+#' @param state.num An integer indicating the state to plot
+#' @param year The year to plot
 #'
-#' @return A plot of the state showing the accidents 
+#' @return A plot of the state showing the accidents
 #'
-#' @note An error will occur if the data does not contain the state requested. 
-#' 
-#' @importFrom dplyr filter 
-#' @importFrom maps map 
-#' @importFrom graphics points  
+#' @note An error will occur if the data does not contain the state requested.
 #'
-#' @examples 
+#' @importFrom dplyr filter
+#' @importFrom maps map
+#' @importFrom graphics points
+#'
+#' @examples
 #' fars_map_state(1,2015)
 #'
-#' @export 
+#' @export
 fars_map_state <- function(state.num, year) {
         filename <- make_filename(year)
         data <- fars_read(filename)

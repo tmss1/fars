@@ -1,15 +1,17 @@
 Package: fars
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Import and analysis FARS data 
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Tomas S
+Maintainer: Tomas S <tomass@somewhere.net>
+Description: This package helps the analysis of data from the US National Highway Traffic Safety 
+  Administration’s Fatality Analysis Reporting System.
+License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
 Suggests: 
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+RoxygenNote: 7.2.0
+Imports: readr, dplyr, tidyr, maps, graphics 
