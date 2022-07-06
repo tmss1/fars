@@ -9,7 +9,8 @@
 Status](https://app.travis-ci.com/tmss1/fars.svg?branch=main)](https://app.travis-ci.com/tmss1/fars)
 <!-- badges: end -->
 
-The goal of fars is to …
+The goal of fars is to analyse data from the US National Highway Traffic
+Safety Administration’s Fatality Analysis Reporting System.
 
 ## Installation
 
@@ -23,7 +24,8 @@ devtools::install_github("tmss1/fars")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to make a file name based on
+the year of FARS data interested:
 
 ``` r
 library(fars)
